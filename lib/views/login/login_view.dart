@@ -14,6 +14,12 @@ class _LoginViewState extends State<LoginView> {
   final _emailControler = TextEditingController();
   final _passwordController = TextEditingController();
   @override
+  void dispose() {
+    _passwordController.dispose();
+    _emailControler.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
@@ -44,16 +50,19 @@ class _LoginViewState extends State<LoginView> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                
               ),
               ElevatedButton(
                 onPressed: () {
                   if (_globalKey.currentState!.validate()) {
-                    
                     print("every thing is okay");
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return ProfileView() ;
-                    }));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ProfileView();
+                        },
+                      ),
+                    );
                   }
                 },
                 child: Text("data"),
