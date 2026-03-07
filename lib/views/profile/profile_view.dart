@@ -30,13 +30,14 @@ class ProfileView extends StatelessWidget {
 
             Text("Name : Mohamed Anis",style: TextStyle(fontSize: 24,),)
             ,
-            InkWell(
+            GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context){
                   return ProductsView();
                 }));
               },
-              child: Container(
+              child: AnimatedContainer(
+                duration: Duration(seconds: 2),
                 height: 75,
                 width: 150,
                 decoration: BoxDecoration(
