@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testing/views/products/products_view.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -28,6 +29,22 @@ class ProfileView extends StatelessWidget {
             ),
 
             Text("Name : Mohamed Anis",style: TextStyle(fontSize: 24,),)
+            ,
+            InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return ProductsView();
+                }));
+              },
+              child: Container(
+                height: 75,
+                width: 150,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(16)
+                ),
+              ),
+            )
           ],
         ),
       ),
