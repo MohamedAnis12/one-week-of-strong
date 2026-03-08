@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testing/views/navBar/navBar.dart';
 import 'package:testing/views/products/products_view.dart';
 
 class ProfileView extends StatelessWidget {
@@ -28,26 +29,47 @@ class ProfileView extends StatelessWidget {
               ],
             ),
 
-            Text("Name : Mohamed Anis",style: TextStyle(fontSize: 24,),)
-            ,
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return ProductsView();
-                }));
-              },
-              child: AnimatedContainer(
-                duration: Duration(seconds: 2),
-                height: 75,
-                width: 150,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(16)
-                ),
-              ),
-            )
+            Text("Name : Mohamed Anis", style: TextStyle(fontSize: 24)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CusttomBottun(text: 'navBar', onTap: Navbar()),
+                CusttomBottun(text: 'Products', onTap: ProductsView()),
+              ],
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CusttomBottun extends StatelessWidget {
+  const CusttomBottun({super.key, required this.text, required this.onTap});
+  final String text;
+  final Widget onTap;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return onTap;
+            },
+          ),
+        );
+      },
+      child: AnimatedContainer(
+        duration: Duration(seconds: 2),
+        height: 75,
+        width: 150,
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Center(child: Text(text)),
       ),
     );
   }
