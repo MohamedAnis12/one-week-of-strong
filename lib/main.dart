@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:testing/views/login/login_view.dart';
 
 void main() {
+
+  WidgetsFlutterBinding.ensureInitialized();
+ SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const TestApp());
 }
 
@@ -11,6 +15,7 @@ class TestApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       home: LoginView()
     );
   }
