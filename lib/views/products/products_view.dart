@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:testing/view_model/cubit/products_cubit.dart';
+import 'package:testing/views/fav_view/fav_view.dart';
+import 'package:testing/views/profile/profile_view.dart';
 
 class ProductsView extends StatelessWidget {
   const ProductsView({super.key});
@@ -13,23 +15,30 @@ class ProductsView extends StatelessWidget {
           appBar: AppBar(),
           body: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ListView.builder(
-              itemCount: BlocProvider.of<ProductsCubit>(
-                context,
-              ).products.length,
-              itemBuilder: (context, value) {
-                return CusttomProfuctCard(
-                  text: BlocProvider.of<ProductsCubit>(
-                    context,
-                  ).products[value].text,
-                  isFav: BlocProvider.of<ProductsCubit>(
-                    context,
-                  ).products[value].isFav,
-                  onTap: () {
-                    BlocProvider.of<ProductsCubit>(context).setFav(value);
-                  },
-                );
-              },
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: BlocProvider.of<ProductsCubit>(
+                      context,
+                    ).products.length,
+                    itemBuilder: (context, value) {
+                      return CusttomProfuctCard(
+                        text: BlocProvider.of<ProductsCubit>(
+                          context,
+                        ).products[value].text,
+                        isFav: BlocProvider.of<ProductsCubit>(
+                          context,
+                        ).products[value].isFav,
+                        onTap: () {
+                          BlocProvider.of<ProductsCubit>(context).setFav(value);
+                        },
+                      );
+                    },
+                  ),
+                ),
+                CusttomBottun(text: 'go to fav list', onTap: FavView()),
+              ],
             ),
           ),
         );
